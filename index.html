@@ -1,47 +1,218 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Charity Water Landing Page</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Charity: Water - Donate</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Lato&display=swap" rel="stylesheet" />
+  <style>
+    /* Reset & base */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body, html { height: 100%; font-family: 'Lato', sans-serif; }
+
+    /* Hero with background image */
+    .hero {
+      position: relative;
+      width: 100%; height: 100vh;
+      /* Updated to use local image file */
+      background: url('img/charity water hero image.png') center/cover no-repeat;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 1;
+    }
+
+    /* Logo/title at top-left */
+    header {
+      position: absolute;
+      top: 20px; left: 20px;
+      background: transparent;
+      padding: 0;
+      z-index: 2;
+    }
+    header h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.5rem;
+      color: #fff;
+    }
+
+    /* CTA row above container */
+    .cta-row {
+      position: absolute;
+      bottom: 100px; left: 20px;
+      width: calc(100% - 40px);
+      display: flex;
+      justify-content: space-between;
+      z-index: 2;
+    }
+    .cta-left, .cta-right {
+      background: rgba(255,255,255,0.8);
+      padding: 12px 16px;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      color: #333;
+      backdrop-filter: blur(8px);
+    }
+
+    /* CTA box at bottom-left */
+    .cta-container {
+      position: absolute;
+      bottom: 20px; left: 20px;
+      width: 300px;
+      background: #fff;
+      border-radius: 8px;
+      padding: 24px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      z-index: 2;
+    }
+
+    /* Toggle buttons */
+    .toggle {
+      display: flex;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+    .toggle button {
+      flex: 1;
+      padding: 8px;
+      background: #f9f9f9;
+      border: none;
+      color: #333;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .toggle button.active,
+    .toggle button:hover {
+      background: #f7c600;
+      color: #000;
+    }
+
+    /* Donation heading */
+    .donation-heading {
+      font-size: 1rem;
+      margin-bottom: 12px;
+      color: #333;
+    }
+
+    /* Amount buttons */
+    .amounts {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .amounts button {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background: #f9f9f9;
+      color: #333;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .amounts button.selected,
+    .amounts button:hover {
+      background: #f7c600;
+      border-color: #f7c600;
+      color: #000;
+    }
+    .amounts button.other { grid-column: span 2; }
+
+    /* Give Today button */
+    .give-today {
+      width: 100%;
+      padding: 12px;
+      background: #f7c600;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      margin-bottom: 12px;
+    }
+
+    /* Donation info text */
+    .donation-info {
+      font-size: 0.85rem;
+      color: #555;
+    }
+    .donation-info span { font-weight: bold; }
+  </style>
 </head>
 <body>
-    <!-- Hero Section: This is the main banner at the top of the page -->
-    <section class="hero">
-        <!-- Main headline -->
-        <h1>Clean Water for Everyone</h1>
-        <!-- Subheadline -->
-        <p>Join us in bringing safe, clean water to communities in need.</p>
-    </section>
+  <section class="hero">
+    <header>
+      <h1>Charity: Water</h1>
+    </header>
+    <div class="cta-row">
+      <span class="cta-left">$10 for you.</span>
+      <span class="cta-right">Lifetime of Hydration For Them.</span>
+    </div>
+    <div class="cta-container">
+      <div class="toggle">
+        <button class="active" id="onceBtn">Give Once</button>
+        <button id="monthlyBtn">Give Monthly</button>
+      </div>
+      <h2 class="donation-heading" id="donationHeading">Choose an amount to give</h2>
+      <div class="amounts" id="amountGrid">
+        <button class="selected" data-amount="10">$10 USD</button>
+        <button data-amount="20">$20 USD</button>
+        <button data-amount="40">$40 USD</button>
+        <button data-amount="100">$100 USD</button>
+        <button class="other" data-amount="other">Other Amount</button>
+      </div>
+      <button class="give-today">Give Today</button>
+      <p class="donation-info" id="donationInfo">
+        Your donation of <span>$10</span> can give <span>3</span> people clean water every year. 100% funds water projects.
+      </p>
+    </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const onceBtn = document.getElementById('onceBtn');
+        const monthlyBtn = document.getElementById('monthlyBtn');
+        const heading = document.getElementById('donationHeading');
+        const amountButtons = document.querySelectorAll('#amountGrid button');
+        const info = document.getElementById('donationInfo');
 
-    <!-- Story Section: This tells the story of the nonprofit -->
-    <section class="story">
-        <h2>Our Story</h2>
-        <p>
-         
-    </section>
+        // Toggle heading text
+        onceBtn.addEventListener('click', () => {
+          onceBtn.classList.add('active');
+          monthlyBtn.classList.remove('active');
+          heading.textContent = 'Choose an amount to give';
+        });
+        monthlyBtn.addEventListener('click', () => {
+          monthlyBtn.classList.add('active');
+          onceBtn.classList.remove('active');
+          heading.textContent = 'Choose an amount to give monthly';
+        });
 
-    <!-- Real-World Impact Story Section -->
-    <section class="impact-story">
-        <!-- Section headline -->
-        <h2>Real Impact: Meet Amina</h2>
-        <!-- Container for image and text -->
-        <div class="impact-content">
-            <!-- Impact image -->
-            <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80" alt="Amina smiling with clean water" class="impact-image">
-            <!-- Impact story text -->
-            <p>
-                Amina used to walk miles every day to collect water for her family. Thanks to your support, her village now has a clean water well. Amina can go to school and her family is healthier and happier.
-            </p>
-        </div>
-    </section>
-
-    <!-- Call-to-Action Section: This encourages visitors to take action -->
-    <section class="call-to-action">
-        <h2>Make a Difference</h2>
-        <p>Your support can help save lives. Every donation brings us closer to a world with clean water for all.</p>
-        <a href="#" class="donate-button">Donate Now</a>
-    </section>
+        // Update info text based on selected amount
+        amountButtons.forEach(btn => {
+          btn.addEventListener('click', () => {
+            amountButtons.forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            const amt = btn.getAttribute('data-amount');
+            let people;
+            switch(amt) {
+              case '10': people = 3; break;
+              case '20': people = 6; break;
+              case '40': people = 12; break;
+              case '100': people = 30; break;
+              default: people = '...';
+            }
+            const displayAmt = amt === 'other' ? 'your chosen amount' : `$${amt}`;
+            info.innerHTML = `Your donation of <span>${displayAmt}</span> can give <span>${people}</span> people clean water every year. 100% funds water projects.`;
+          });
+        });
+      });
+    </script>
+  </section>
 </body>
 </html>

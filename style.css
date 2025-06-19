@@ -1,0 +1,25 @@
+/* ...existing code... */
+
+/* Hero section styles */
+.hero {
+    /* Set the height of the hero section */
+    height: 400px;
+
+    /* Set the background image */
+    background-image: url("img/charity water hero image.png"); /* Quotes for spaces, no leading slash */
+
+    /* Make the background cover the whole area */
+    background-size: cover;
+
+    /* Center the background image */
+    background-position: center;
+
+    /* Optional: Add some text styling */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2em;
+    font-family: Arial, sans-serif;
+}
+/* ...existing code... */
