@@ -39,6 +39,21 @@
       color: #fff;
     }
 
+    /* Amara's story box at top right */
+    .amara-story {
+      position: absolute;
+      top: 100px; right: 20px;
+      background: rgba(255,255,255,0.9);
+      padding: 16px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      color: #333;
+      z-index: 2;
+      max-width: 300px;
+      line-height: 1.4;
+      backdrop-filter: blur(8px);
+    }
+
     /* CTA row above container */
     .cta-row {
       position: absolute;
@@ -167,6 +182,13 @@
     <header>
       <h1>Charity: Water</h1>
     </header>
+    <!-- Amara's story box at top right -->
+    <div class="amara-story">
+      Ten-year-old Amara used to wake up at 4 AM every day, walking three miles to collect dirty water from a distant well. She missed school constantly and often got sick from the contaminated water her family had to drink.<br><br>
+      Today, thanks to a clean water well built just steps from her home, Amara wakes up at sunrise. She turns a simple handle, fills her container with clean water in seconds, and arrives at school on time with a bright smile.<br><br>
+      The difference? Clean water gave Amara back her childhood, her health, and her dreams of becoming a teacher.<br><br>
+      <b>Your donation can bring this same transformation to children like Amara around the world.</b>
+    </div>
     <div class="cta-row">
       <!-- The cta-left span is moved up by 3 inches, uses white italic text, no background, and larger font size -->
       <span class="cta-left" style="position: relative; bottom: 3in; background: none; color: #fff; font-size: 1.2rem; font-style: italic;">$10 for you.</span>

@@ -194,6 +194,21 @@ section {
   border-radius: 0;    /* Remove border radius */
 }
 
+/* Amara's story box at top right corner */
+.amara-story {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  max-width: 340px;
+  color: #fff;           /* White font */
+  font-style: italic;    /* Italic text */
+  font-size: 1.05em;     /* Slightly larger for readability */
+  line-height: 1.5;
+  z-index: 2;
+  text-align: left;
+  /* No background, just text */
+}
+
 /* 
   Media Queries for Responsive Design
   Media queries help make your website look good on different screen sizes,
@@ -235,6 +250,62 @@ section {
     width: 90%;    /* Make image take up most of the width */
     max-width: 220px;
   }
+
+  /* Responsive styles for mobile devices */
+  @media (max-width: 600px) {
+    .hero {
+      padding: 16px 4px;
+      font-size: 1em;
+      min-height: 100vh;
+    }
+
+    header {
+      top: 10px;
+      left: 10px;
+    }
+
+    .amara-story {
+      top: 70px;
+      right: 10px;
+      max-width: 90vw;
+      font-size: 0.95em;
+      padding: 10px;
+    }
+
+    .cta-message-big {
+      left: 10px;
+      bottom: 210px;
+      font-size: 1.2em;
+      width: 90vw;
+    }
+
+    .cta-row {
+      left: 10px;
+      bottom: 140px;
+      width: 90vw;
+      font-size: 1em;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .cta-left, .cta-right {
+      font-size: 1em;
+      padding: 4px 0;
+      background: none;
+      color: #fff;
+      border-radius: 0;
+      backdrop-filter: none;
+    }
+
+    .cta-container {
+      left: 10px;
+      bottom: 10px;
+      width: 95vw;
+      min-width: 0;
+      padding: 14px;
+    }
+  }
 }
 
 /* This media query applies styles when the screen is wider than 600px (like on tablets and computers) */
@@ -252,5 +323,35 @@ section {
 
   .impact-image {
     width: 300px;
+  }
+
+  /* Responsive styles for tablets (optional, can adjust as needed) */
+  @media (min-width: 601px) and (max-width: 900px) {
+    .amara-story {
+      top: 40px;
+      right: 20px;
+      max-width: 60vw;
+      font-size: 1em;
+      padding: 12px;
+    }
+    .cta-message-big {
+      left: 20px;
+      bottom: 180px;
+      font-size: 1.5em;
+      width: 60vw;
+    }
+    .cta-row {
+      left: 20px;
+      bottom: 120px;
+      width: 60vw;
+      font-size: 1.1em;
+    }
+    .cta-container {
+      left: 20px;
+      bottom: 20px;
+      width: 60vw;
+      min-width: 0;
+      padding: 18px;
+    }
   }
 }
