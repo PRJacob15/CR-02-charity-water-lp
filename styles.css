@@ -100,6 +100,24 @@ h2 {
   text-align: left;        /* Align text to the left like the CTA box */
 }
 
+/* Large, italic, white message above CTA box, center-left, no background */
+.cta-message-big {
+  position: absolute;
+  left: 40px;            /* Move a bit from the left edge */
+  bottom: 160px;         /* Place above the CTA box */
+  font-size: 2em;        /* Large text */
+  font-style: italic;    /* Italic text */
+  color: #fff;           /* White font */
+  margin: 0;
+  padding: 0;
+  background: none;      /* No background */
+  border-radius: 0;
+  font-weight: bold;
+  z-index: 2;
+  text-align: left;
+  width: auto;           /* Only as wide as the text */
+}
+
 /* Call-to-Action Section Styles */
 .call-to-action {
   background-color: #FFC907; /* Primary Yellow */
@@ -170,6 +188,10 @@ section {
 
 .cta-right {
   text-align: right;
+  background: none;    /* Remove background */
+  color: #fff;         /* White font color */
+  padding: 0;          /* Remove padding */
+  border-radius: 0;    /* Remove border radius */
 }
 
 /* 

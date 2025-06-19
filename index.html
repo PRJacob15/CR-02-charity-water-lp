@@ -57,6 +57,22 @@
       backdrop-filter: blur(8px);
     }
 
+    /* Big CTA message */
+    .cta-message-big {
+      position: absolute;
+      bottom: 160px; left: 20px;
+      background: transparent;
+      padding: 0;
+      border-radius: 4px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #fff;
+      z-index: 2;
+      text-align: left - center;
+      width: calc(100% - 40px);
+      font-style: italic;
+    }
+
     /* CTA box at bottom-left */
     .cta-container {
       position: absolute;
@@ -152,8 +168,16 @@
       <h1>Charity: Water</h1>
     </header>
     <div class="cta-row">
-      <span class="cta-left">$10 for you.</span>
-      <span class="cta-right">Lifetime of Hydration For Them.</span>
+      <!-- The cta-left span is moved up by 3 inches, uses white italic text, no background, and larger font size -->
+      <span class="cta-left" style="position: relative; bottom: 3in; background: none; color: #fff; font-size: 1.2rem; font-style: italic;">$10 for you.</span>
+      <!-- Removed background color, just text with same style as "$10 For You." -->
+      <span class="cta-right" style="background: none; color: #fff; font-size: 1.2rem; font-style: italic; padding: 0;">Lifetime of Hydration For Them.</span>
+    </div>
+    <!-- Center-left, white, italic message above CTA box -->
+    <!-- Big CTA message above the cta-row -->
+    <!-- We use 'top' instead of 'bottom' to move it higher from the top of the hero section -->
+    <div class="""cta-message-big" style="position: absolute; top: 3in; left: 20px; font-size: 2rem;"></div>
+      $10 For You
     </div>
     <div class="cta-container">
       <div class="toggle">
